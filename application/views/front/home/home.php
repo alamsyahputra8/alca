@@ -20,8 +20,8 @@
                         <!-- Captions -->
                         <h2 class="text-dark"><?PHP echo $dataslides['title']; ?></h2>
                         <span class="strong"><?PHP echo $dataslides['sub']; ?></span>
-                        <!-- <a class="btn" href="#">Purchase Now</a>
-                        <a class="btn btn-light">Purchase</a> -->
+                        <!-- <a class="btn-light" href="#">SHOP NOW</a> -->
+                        <!-- <a class="btn btn-light">Purchase</a> -->
                         <!-- end: Captions -->
                     </div>
                 </div>
@@ -30,6 +30,52 @@
             <?PHP } ?>
         </div>
         <!--end: Inspiro Slider -->
+
+        <section id="bannerhome" class="p-t-30">
+            <div class="container">
+                <div class="">
+                     <div id="asdf" class="row">
+                        <div class="col-lg-4">
+                            <?PHP
+                            $qadsL      = "SELECT * FROM ads where position='left' order by 1 desc";
+                            $getadsL    = $this->query->getDatabyQ($qadsL);
+                            foreach ($getadsL as $adsL) {
+                            ?>
+                            <a class="" href="<?PHP echo $adsL['link']; ?>">
+                                <div class="shop-promo-box text-right" style="background: url(<?PHP echo base_url(); ?>images/ads/<?PHP echo $adsL['picture']; ?>) no-repeat top center; background-size: 100% auto; min-height: 180px;">
+                                </div>
+                            </a>
+                            <?PHP } ?>
+                        </div>
+                        <div class="col-lg-4">
+                            <?PHP
+                            $qadsC      = "SELECT * FROM ads where position='center' order by 1 desc";
+                            $getadsC    = $this->query->getDatabyQ($qadsC);
+                            foreach ($getadsC as $adsC) {
+                            ?>
+                            <a class="" href="<?PHP echo $adsC['link']; ?>">
+                                <div class="shop-promo-box text-right" style="background: url(<?PHP echo base_url(); ?>images/ads/<?PHP echo $adsC['picture']; ?>) no-repeat top left; background-size: auto 100% ;">
+                                </div>
+                            </a>
+                            <?PHP } ?>
+                        </div>
+                        <div class="col-lg-4">
+                            <?PHP
+                            $qadsR      = "SELECT * FROM ads where position='right' order by 1 desc";
+                            $getadsR    = $this->query->getDatabyQ($qadsR);
+                            foreach ($getadsR as $adsR) {
+                            ?>
+                            <a class="" href="<?PHP echo $adsR['link']; ?>">
+                                <div class="shop-promo-box text-right" style="background: url(<?PHP echo base_url(); ?>images/ads/<?PHP echo $adsR['picture']; ?>) no-repeat top center; background-size: 100% auto; min-height: 180px;">
+                                </div>
+                            </a>
+                            <?PHP } ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
 
         <style>
             #clientslide .product .product-rate {font-size: 12px;}
