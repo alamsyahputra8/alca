@@ -41,7 +41,7 @@
                             $getadsL    = $this->query->getDatabyQ($qadsL);
                             foreach ($getadsL as $adsL) {
                             ?>
-                            <a class="" href="<?PHP echo $adsL['link']; ?>">
+                            <a class="" href="<?PHP echo $adsL['link']; ?>" target="_blank">
                                 <div class="shop-promo-box text-right" style="background: url(<?PHP echo base_url(); ?>images/ads/<?PHP echo $adsL['picture']; ?>) no-repeat top center; background-size: 100% auto; min-height: 180px;">
                                 </div>
                             </a>
@@ -53,7 +53,7 @@
                             $getadsC    = $this->query->getDatabyQ($qadsC);
                             foreach ($getadsC as $adsC) {
                             ?>
-                            <a class="" href="<?PHP echo $adsC['link']; ?>">
+                            <a class="" href="<?PHP echo $adsC['link']; ?>" target="_blank">
                                 <div class="shop-promo-box text-right" style="background: url(<?PHP echo base_url(); ?>images/ads/<?PHP echo $adsC['picture']; ?>) no-repeat top left; background-size: auto 100% ;">
                                 </div>
                             </a>
@@ -65,7 +65,7 @@
                             $getadsR    = $this->query->getDatabyQ($qadsR);
                             foreach ($getadsR as $adsR) {
                             ?>
-                            <a class="" href="<?PHP echo $adsR['link']; ?>">
+                            <a class="" href="<?PHP echo $adsR['link']; ?>" target="_blank">
                                 <div class="shop-promo-box text-right" style="background: url(<?PHP echo base_url(); ?>images/ads/<?PHP echo $adsR['picture']; ?>) no-repeat top center; background-size: 100% auto; min-height: 180px;">
                                 </div>
                             </a>

@@ -148,7 +148,10 @@ $gRelated   = $this->query->getDatabyQ($qRelated);
                                 </div>
                                 <div class="row">
                                     <div class="col-md-9">
-                                        <h6><span style="color:#981212; font-size: 18px;">1.</span> Pilih Size * <img src="<?PHP echo base_url(); ?>images/arrowdown.jpeg" style="max-height: 30px; margin-top: 10px;"></h6>
+                                        <!-- <h6>
+                                            <span style="color:#981212; font-size: 18px;">1.</span> Pilih Size * 
+                                            <img src="<?PHP echo base_url(); ?>images/arrowdown.jpeg" style="max-height: 30px; margin-top: 10px;">
+                                        </h6> -->
                                         <ul class="product-size">
                                             <!-- <?PHP 
                                             // foreach ($gStok as $datastok) { 
@@ -211,18 +214,16 @@ $gRelated   = $this->query->getDatabyQ($qRelated);
                                         </select>
                                     </div> -->
                                     
-                                    <div class="col-md-3 text-right">
+                                    <!-- <div class="col-md-3 text-right">
                                         <h6><span style="color:#981212; font-size: 18px;">2.</span> Pilih quantity *</h6>
                                         <div class="cart-product-quantity">
                                             <div class="quantity m-l-5">
                                                 <img src="<?PHP echo base_url(); ?>images/arrowdown2.jpeg" style="max-height: 30px; margin-top: -10px; -webkit-transform: scaleX(-1); transform: scaleX(-1);">
-                                                <!-- <input type="button" class="minus" value="-"> -->
                                                 <input type="hidden" value="<?PHP echo $idproduct; ?>" name="productid">
                                                 <input type="number" class="qty" value="1" name="qty">
-                                                <!-- <input type="button" class="plus" value="+"> -->
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     
                                     <div class="col-lg-12">
                                         <div role="alert" class="alert alert-success alert-dismissible" id="suksesinsert" style="display: none;">
@@ -242,15 +243,18 @@ $gRelated   = $this->query->getDatabyQ($qRelated);
                                         <input type="hidden" name="ajax" value="1">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <button type='submit' name='addtocart' id="btnaddtocart" class="btn col-sm-12">
+                                                <a href="<?PHP echo $data['link_product']; ?>" target="_balnk" class="btn col-sm-12">
+                                                    <i class="fa fa-shopping-cart"></i> Beli
+                                                </a>
+                                                <!-- <button type='submit' name='addtocart' id="btnaddtocart" class="btn col-sm-12">
                                                     <i class="fa fa-shopping-cart"></i> Tambahkan ke Keranjang
-                                                </button>
-                                                <h6>
+                                                </button> -->
+                                                <!-- <h6>
                                                     <img src="<?PHP echo base_url(); ?>images/arrowup.jpeg" style="max-height: 30px; margin-top: -10px;">
                                                     <span style="color:#981212; font-size: 18px;">3.</span> Klik disini untuk menambahkan ke keranjang.
-                                                </h6>
+                                                </h6> -->
                                             </div>
-                                            <div class="col-md-6">
+                                            <!-- <div class="col-md-6">
                                                 <a href='<?PHP echo base_url(); ?>cart/' class="btn btn-light col-sm-12">
                                                     <i class="fa fa-shopping-cart"></i> Lanjut ke Pembayaran
                                                 </a>
@@ -258,7 +262,7 @@ $gRelated   = $this->query->getDatabyQ($qRelated);
                                                     <img src="<?PHP echo base_url(); ?>images/arrowup.jpeg" style="max-height: 30px; margin-top: -10px;">
                                                     <span style="color:#981212; font-size: 18px;">4.</span> Klik untuk lanjut ke proses selanjutnya.
                                                 </h6>
-                                            </div>
+                                            </div> -->
                                         </div>
                                         <!-- <button class="btn" id="pay-button">Pay!</button> -->
                                     </div>
