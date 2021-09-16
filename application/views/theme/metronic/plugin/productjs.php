@@ -24,6 +24,7 @@ $(document).on('click', '.btnupdateM', function(e){
         $('#namedata').html(data.name);
         $('#ed_id').val(data.id_product);
         $('#ed_name').val(data.name);
+        $('#ed_linkmp').val(data.link_product);
         $('#ed_price').val(data.price);
         $('#ed_disc').val(data.diskon);
         $('#ed_disc2').val(data.diskon_special);
@@ -466,6 +467,7 @@ var KTFormWidgets = function () {
             form.validate({
                 rules: {
                     name: {required: true},
+                    linkmp: {required: true},
                     pict: {required: true},
                     price: {required: true},
                     diskon: {required: true},

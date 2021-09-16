@@ -1,6 +1,6 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
-<link href="https://parwatha.com/polo/css/style.css" rel="stylesheet">
-<link href="https://parwatha.com/polo/css/responsive.css" rel="stylesheet">
+<link href="<?PHP echo base_url(); ?>assets/polo/css/style.css" rel="stylesheet">
+<link href="<?PHP echo base_url(); ?>assets/polo/css/responsive.css" rel="stylesheet">
 <?PHP
 $q 				= "
 				select * from product where id_product='$id'
@@ -197,7 +197,7 @@ $dataP 			= array_shift($getDataP);
 <!-- end:: Content -->
 <!--Plugins-->
 <!--script src="<?PHP echo base_url(); ?>assets/polo/js/jquery.js"></script-->
-<script src="https://parwatha.com/polo/js/plugins.js"></script>
+<script src="<?PHP echo base_url(); ?>assets/polo/js/plugins.js"></script>
 
 <!--Template functions-->
-<script src="https://parwatha.com/polo/js/functions.js"></script>
+<script src="<?PHP echo base_url(); ?>assets/polo/js/functions.js"></script>

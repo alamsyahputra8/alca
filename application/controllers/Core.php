@@ -6839,6 +6839,7 @@ class Core extends CI_Controller {
 			}
 
 			$name		= trim(strip_tags(stripslashes($this->input->post('name',true))));
+			$linkmp		= $this->input->post('linkmp',true);
 			$link		= $this->formula->clean(strtolower($name)).'-'.$id;
 			$price		= trim(strip_tags(stripslashes($this->input->post('price',true))));
 			$diskon		= trim(strip_tags(stripslashes($this->input->post('disc',true))));
@@ -6866,8 +6867,8 @@ class Core extends CI_Controller {
 			$this->makeThumbnails('product',$fileNamePost);
 
 			$q 			= "
-						insert into product (id_product,name,link,id_link,id_category,description,price,diskon,diskon_special,weight,popular_product) values 
-						('$id','$name','$link', '$brand','$category','$description','$price','$diskon','$diskon2','$weight','$popular')
+						insert into product (id_product,name,link,id_link,id_category,description,price,diskon,diskon_special,weight,popular_product,link_product) values 
+						('$id','$name','$link', '$brand','$category','$description','$price','$diskon','$diskon2','$weight','$popular','$linkmp')
 						";
 						//echo $q;
 			$rows 		= $this->query->insertDatabyQ($q);
@@ -7143,6 +7144,7 @@ class Core extends CI_Controller {
 			$id			= trim(strip_tags(stripslashes($this->input->post('ed_id',true))));
 			
 			$name		= trim(strip_tags(stripslashes($this->input->post('ed_name',true))));
+			$linkmp		= $this->input->post('ed_linkmp',true);
 			$link		= $this->formula->clean(strtolower($name)).'-'.$id;
 			$price		= trim(strip_tags(stripslashes($this->input->post('ed_price',true))));
 			$category	= trim(strip_tags(stripslashes($this->input->post('ed_category',true))));
@@ -7190,7 +7192,7 @@ class Core extends CI_Controller {
 
 			// UPDATE BASE PRODUCT
 			$rows 	= $this->query->updateData('product',
-					"name='$name', link='$link', id_link='$brand', id_category='$category', description='$description', price='$price', diskon='$diskon', diskon_special='$diskon2', weight='$weight',popular_product='$popular'",
+					"name='$name', link='$link', id_link='$brand', id_category='$category', description='$description', price='$price', diskon='$diskon', diskon_special='$diskon2', weight='$weight',popular_product='$popular',link_product='$linkmp'",
 					"WHERE id_product='$id'");
 			
 			// UPDATE STOK PRODUCT

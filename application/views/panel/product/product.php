@@ -129,6 +129,16 @@ $getDataBrand		= $this->query->getDatabyQ($qBrand);
 								</div>
 
 								<div class="form-group row">
+									<label class="col-form-label col-lg-3 col-sm-12">Link Marketplace *</label>
+									<div class="col-lg-4 col-md-9 col-sm-12">
+										<div class='input-group'>
+											<input type="text" name="linkmp" class="form-control" id="linkmp" placeholder="Link Marketplace">
+										</div>
+										<!-- <span class="form-text text-muted">Tambahkan <b><code>&ltbr&gt</code></b> jika ingin menambahkan "Enter" atau baris baru.</span> -->
+									</div>
+								</div>
+
+								<div class="form-group row">
 									<label class="col-form-label col-lg-3 col-sm-12">Price *</label>
 									<div class="col-lg-4 col-md-9 col-sm-12">
 										<div class='input-group'>
@@ -397,6 +407,16 @@ $getDataBrand		= $this->query->getDatabyQ($qBrand);
 										<div class="col-lg-4 col-md-9 col-sm-12">
 											<div class='input-group'>
 												<input type="text" name="ed_name" class="form-control" id="ed_name" placeholder="Name">
+											</div>
+											<!-- <span class="form-text text-muted">Tambahkan <b><code>&ltbr&gt</code></b> jika ingin menambahkan "Enter" atau baris baru.</span> -->
+										</div>
+									</div>
+
+									<div class="form-group row">
+										<label class="col-form-label col-lg-3 col-sm-12">Link Marketplace *</label>
+										<div class="col-lg-4 col-md-9 col-sm-12">
+											<div class='input-group'>
+												<input type="text" name="ed_linkmp" class="form-control" id="ed_linkmp" placeholder="Link Marketplace">
 											</div>
 											<!-- <span class="form-text text-muted">Tambahkan <b><code>&ltbr&gt</code></b> jika ingin menambahkan "Enter" atau baris baru.</span> -->
 										</div>
