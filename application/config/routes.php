@@ -77,6 +77,7 @@ $route['panel/product-image/(:any)'] = 'viewpanel/product_image/$1';
 $route['panel/live']			= 'viewpanel/stream';
 
 $route['panel/detailinbox/(:any)'] = 'viewpanel/detailinbox/$1';
+$route['panel/bannerads'] 		= 'viewpanel/bannerads';
 $route['panel/banner'] 			= 'viewpanel/banner';
 $route['panel/mailsite'] 		= 'viewpanel/mailsite';
 $route['panel/config'] 			= 'viewpanel/config';

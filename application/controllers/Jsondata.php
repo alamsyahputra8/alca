@@ -445,6 +445,16 @@ class Jsondata extends CI_Controller {
 					}
 				}
 
+				if(trim($data['menu'])=='Manage Banner Ads'){
+					$tables = 'ads';
+					$parameter = 'title as datass';
+					$condition = 'where id="'.$data['data'].'"';
+					$get_data = $this->query->getData($tables,$parameter,$condition);
+					foreach($get_data as $data_data) { 
+						$dat = $data_data['datass'];
+					}
+				}
+
 				if(trim($data['menu'])=='User Profile'){
 					$tables = 'user';
 					$parameter = 'name as datass';
@@ -794,6 +804,75 @@ class Jsondata extends CI_Controller {
 					"picture"		=> $picture,
 					"title"			=> $data['title'],
 					"sub"			=> $data['sub'],
+					"updateby"		=> $data['update_by'],
+					"lastupdate"	=> $data['last_update'],
+					"actions"		=> $id
+					);
+				$json[] = $row;
+			}
+			echo json_encode($json);
+		} else {
+			$json ='';
+			echo json_encode($json);
+		}
+	}
+
+	public function databannerads(){
+		$data_aksess = $this->query->getAkses($this->profile,'panel/banner');
+		$shift = array_shift($data_aksess);
+		$akses = $shift['akses'];
+
+		$q 		= "
+					select
+						a.*,
+						(SELECT xb.name as  update_by FROM `data_log` xa LEFT JOIN user xb ON xa.userid=xb.userid 
+						WHERE xa.menu='Manage Banner Ads' AND xa.data = a.id ORDER BY xa.date_time DESC limit 1)as update_by,
+						(SELECT DATE_FORMAT(xa.date_time, '%d-%b-%y %H:%i:%s') as last_update FROM `data_log` xa LEFT JOIN user xb ON xa.userid=xb.userid 
+						WHERE xa.menu='Manage Banner Ads' AND xa.data = a.id ORDER BY xa.date_time DESC limit 1)as last_update
+					from
+					ads a
+					ORDER BY a.id desc
+				";
+		$getdata= $this->query->getDatabyQ($q);
+		
+		$no=0;
+		header('Content-type: application/json; charset=UTF-8');
+
+		$cek 	= $this->query->getNumRowsbyQ($q)->num_rows();
+
+		if ($cek>0) {
+			foreach($getdata as $data) {
+				$no++;
+
+				$id = $data['id'];
+
+				$filefound = $data['picture'];
+				$url = base_url()."images/ads/".$filefound;
+				$exis = file_exists(FCPATH."images/ads/".$filefound);
+				if($exis==1 AND $filefound !=''){
+					
+				}else{
+					$filefound='default.png';
+				}
+				
+				if ($data['picture']=='') {
+					$picture 		= '<center><span class="kt-badge kt-badge--username kt-badge--unified-success kt-badge--lg kt-badge--rounded kt-badge--bold"> '.substr($data['link'],0,1).'</span></center>';
+				} else {
+					$picture 		= '
+								<div class="kt-user-card-v2">
+	                                <div class="" style="margin: 0 auto; max-width: 150px;">
+	                                    <center><img src="'.base_url().'images/ads/'.$filefound.'" class="img-responsive" style="max-width:150px;" alt="photo"></center>
+	                                </div>
+	                            </div>';
+				}
+				
+				//$buttonupdate = getRoleUpdate($akses,'update',$id);
+				//$buttondelete = getRoleDelete($akses,'delete',$id);
+
+				$row = array(
+					"picture"		=> $picture,
+					"link"			=> $data['link'],
+					"type"			=> $data['position'],
 					"updateby"		=> $data['update_by'],
 					"lastupdate"	=> $data['last_update'],
 					"actions"		=> $id

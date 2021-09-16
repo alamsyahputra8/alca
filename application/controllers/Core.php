@@ -5132,6 +5132,170 @@ class Core extends CI_Controller {
 		}
 	}
 
+	public function getdatabannerads(){
+		if(checkingsessionpwt()){
+
+			$columnsDefault = [
+				'picture'		=> true,
+				'link'			=> true,
+				'type'			=> true,
+				'updateby'		=> true,
+				'lastupdate'	=> true,
+				'actions'		=> true,
+			];
+			$arraynya	= $columnsDefault;
+			$jsonfile	= base_url().'jsondata/databannerads';
+
+			$this->generateDatatable($arraynya,$jsonfile);
+		} else {
+			redirect('/panel');
+		}
+	}
+
+	public function modalbannerads(){
+		if(checkingsessionpwt()){
+			
+			$id				= trim(strip_tags(stripslashes($this->input->post('id',true))));
+			
+			$q 				= "
+							select * from ads
+							where id='".$id."'
+							";
+			$getData		= $this->query->getDatabyQ($q);
+			
+			header('Content-type: application/json; charset=UTF-8');
+			
+			if (isset($id) && !empty($id)) {
+				foreach($getData as $row) {
+					echo json_encode($row);
+					exit;
+				}
+			}
+		} else {
+			redirect('/panel');
+		}
+	}	
+
+	public function insertbannerads(){
+		if(checkingsessionpwt()){
+			$userdata	= $this->session->userdata('sesspwt'); 
+			$userid 	= $userdata['userid'];
+
+			/*$title		= trim(strip_tags(stripslashes($this->input->post('title',true))));
+			$sub		= trim(strip_tags(stripslashes($this->input->post('subtitle',true))));*/
+			$link		= $this->input->post('link',true);
+			$type		= $this->input->post('type',true);
+			$fileName 	= preg_replace("/[^a-zA-Z]/", "", time().$_FILES['pict']['name']);
+				
+			$config['upload_path'] = './images/ads/'; //buat folder dengan nama assets di root folder
+			$config['file_name'] = $fileName;
+			$config['allowed_types'] = 'gif|jpg|png|jpeg|JPG';
+			 
+			$this->load->library('upload');
+			$this->upload->initialize($config);
+			 
+			if(! $this->upload->do_upload('pict') )
+			$this->upload->display_errors();
+				 
+			$media 			= $this->upload->data();
+			$fileNamePost 	= $media['file_name'];
+
+			$q 			= "
+						insert into ads (link,position,picture) values ('$link','$type','$fileNamePost')
+						";
+						//echo $q;
+			$rows 		= $this->query->insertDatabyQ($q);
+
+			if($rows) {
+				$id			= $this->db->insert_id();
+				$url 		= "Manage Banner Ads";
+				$activity 	= "INSERT";
+
+				$log = $this->query->insertlog($activity,$url,$id);
+				print json_encode(array('success'=>true,'total'=>1));
+			} else {
+				echo "";
+				//echo "insert into content (title,sub,headline,content,id_menu) values ('$title','',$menu,'$headline','$content')";
+			}
+		} else {
+			redirect('/panel');
+		}
+	}
+
+	public function deletebannerads(){
+		if(checkingsessionpwt()){
+			$url 		= "Manage Banner Ads";
+			$activity 	= "DELETE";
+
+			$cond	= trim(strip_tags(stripslashes($this->input->post('iddel',true))));
+
+			$rows = $this->query->deleteData('ads','id',$cond);
+			
+			if(isset($rows)) {
+				$log = $this->query->insertlog($activity,$url,$cond);
+				print json_encode(array('success'=>true,'total'=>1));
+			} else {
+				echo "";
+			}
+		}else{
+            redirect('/login');
+        }
+	}
+
+	public function updatebannerads(){
+		if(checkingsessionpwt()){
+			$userdata	= $this->session->userdata('sesspwt'); 
+
+			$cekinglogo	= $_FILES['upl']['name'];
+			$id			= trim(strip_tags(stripslashes($this->input->post('ed_id',true))));
+			/*$title		= trim(strip_tags(stripslashes($this->input->post('ed_title',true))));
+			$sub		= trim(strip_tags(stripslashes($this->input->post('ed_subtitle',true))));*/
+			$link		= $this->input->post('ed_link',true);
+			$type		= $this->input->post('ed_type',true);
+
+			$userid		= $userdata['userid'];
+				
+			$url 		= "Manage Banner Ads";
+			$activity 	= "UPDATE";
+
+			if ($cekinglogo!='') {
+				//delete eksisting
+				$coba = $this->query->getData('ads','picture','WHERE id='.$id.'');
+				foreach ($coba as $dataex) {
+					$dataexis = 'images/ads/'.$dataex['img'];
+				}
+				unlink($dataexis);
+			
+				$fileName = str_replace(' ','_',time().$_FILES['upl']['name']);
+				$config['upload_path'] = './images/ads/'; //buat folder dengan nama assets di root folder
+				$config['file_name'] = $fileName;
+				$config['allowed_types'] = 'gif|jpg|png|jpeg';
+				$config['max_size'] = 10000000;
+				 
+				$this->load->library('upload');
+				$this->upload->initialize($config);
+				 
+				if(! $this->upload->do_upload('upl') )
+				$this->upload->display_errors();
+					 
+				$media = $this->upload->data('upl');
+
+				$rows = $this->query->updateData('ads',"link='$link', position='$type', picture='$fileName'","WHERE id='$id'");
+			} else {
+				$rows = $this->query->updateData('ads',"link='$link', position='$type'","WHERE id='$id'");
+			}
+
+			if($rows) {
+				$log = $this->query->insertlog($activity,$url,$id);
+				print json_encode(array('success'=>true,'total'=>1));
+			} else {
+				echo "";
+			}
+		} else {
+			redirect('/panel');
+		}
+	}
+
 	public function getSiteConfig(){
 		if(checkingsessionpwt()){
 
