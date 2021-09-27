@@ -38,39 +38,23 @@ if ($dataSEO['id_menu']==1) {
     <!-- Document title -->
     <title><?PHP echo $menutitle; ?><?PHP echo $site['name_site']; ?></title>
     
-    <!-- Facebook Pixel Code -->
-    <!-- <script>
-      !function(f,b,e,v,n,t,s)
-      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window, document,'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', '1066763796799012');
-      fbq('track', 'PageView');
-    </script>
-    <noscript>
-        <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1066763796799012&ev=PageView&noscript=1"/>
-    </noscript> -->
-    <!-- End Facebook Pixel Code -->
-
-    <!-- Facebook Pixel Code -->
+   <!-- Facebook Pixel Code -->
     <script>
-        !function(f,b,e,v,n,t,s)
-        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-        n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)}(window,document,'script',
-        'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '274255490491126'); 
-        fbq('track', 'PageView');
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window,document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+     fbq('init', '716313199313745'); 
+    fbq('track', 'PageView');
     </script>
     <noscript>
-         <img height="1" width="1" src="https://www.facebook.com/tr?id=274255490491126&ev=PageView &noscript=1"/>
+     <img height="1" width="1" 
+    src="https://www.facebook.com/tr?id=716313199313745&ev=PageView
+    &noscript=1"/>
     </noscript>
     <!-- End Facebook Pixel Code -->
 
