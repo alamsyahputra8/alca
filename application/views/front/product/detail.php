@@ -407,33 +407,26 @@ $gRelated   = $this->query->getDatabyQ($qRelated);
                 });
 
                 $('#btnpurchase').click(function() {
-                    
+                    $("#progresloader").fadeIn('fast');
+
                     //  TRACKING PIXEL
                     fbq('track', 'Purchase', {content_ids: '<?PHP echo $idproduct; ?>', content_name: '<?PHP echo $data['name']; ?>', content_type: 'product', currency: 'IDR', value: <?PHP echo $valprice; ?> });
 
                     // console.log();
                     var dumid   = '<?PHP echo $idproduct; ?>';
+
                     $.ajax({
-                        url: "<?PHP echo base_url(); ?>core/getLinkMarketPlace",
-                        type: "POST",
+                        url: '<?PHP echo base_url(); ?>core/getLinkMarketPlace',
+                        type: 'POST',
                         data: 'dumid='+dumid,
-                        beforeSend: function(){ 
-                            $("#progresloader").fadeIn('fast');
-                        },
-                        success: function(data) {
-                            if(data) {
-                                // alert(data);
-                                $("#progresloader").fadeOut('fast');
-                                window.location.href = data;
-                            } else { 
-                                $("#progresloader").fadeOut('fast');
-                            }
-                        },
-                        error: function (error) {
-                            $("#progresloader").fadeOut('fast');
-                        },
-                        contentType: false,
-                        processData: false
+                        dataType: 'json'
+                    })
+                    .done(function(data){
+                        $("#progresloader").fadeOut('fast');
+                        window.location.href = data.link_product;
+                    })
+                    .fail(function(){
+                        $("#progresloader").fadeOut('fast');
                     });
                     return false;
                 });

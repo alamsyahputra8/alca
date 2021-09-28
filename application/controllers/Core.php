@@ -8119,9 +8119,10 @@ class Core extends CI_Controller {
 		
 		$rows 		= $this->db->query("SELECT * FROM product where id_product='$id'")->result_array();
 
-		foreach ($rows as $data) {
-			echo $data['link_product'];
-		} 
+		foreach($rows as $data) {
+			echo json_encode($data);
+			exit;
+		}
 	}
 
 }
