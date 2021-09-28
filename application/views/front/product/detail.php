@@ -243,9 +243,13 @@ $gRelated   = $this->query->getDatabyQ($qRelated);
                                         <input type="hidden" name="ajax" value="1">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <a href="<?PHP echo $data['link_product']; ?>" target="_balnk" class="btn col-sm-12">
+                                                <!-- <a href="<?PHP echo $data['link_product']; ?>" target="_balnk" class="btn col-sm-12">
                                                     <i class="fa fa-shopping-cart"></i> Beli
-                                                </a>
+                                                </a> -->
+                                                <input type="hidden" value="<?PHP echo $idproduct; ?>" name="dumid" id="dumid">
+                                                <button type='submit' name='btnpurchase' id="btnpurchase" class="btn col-sm-12" data-id="<?PHP echo $idproduct; ?>">
+                                                    <i class="fa fa-shopping-cart"></i> Beli
+                                                </button>
                                                 <!-- <button type='submit' name='addtocart' id="btnaddtocart" class="btn col-sm-12">
                                                     <i class="fa fa-shopping-cart"></i> Tambahkan ke Keranjang
                                                 </button> -->
@@ -357,7 +361,8 @@ $gRelated   = $this->query->getDatabyQ($qRelated);
             $(document).ready(function() { 
 
                 /*place jQuery actions here*/ 
-                $('#formaddtocart').submit(function() {
+                $('#formaddtocartxx').submit(function() {
+                    alert('cek');
                             
                     var formdata = new FormData(this);
                     // console.log();
@@ -393,6 +398,38 @@ $gRelated   = $this->query->getDatabyQ($qRelated);
                             $('#suksesinsert').hide('fast');
                             $('#gagalinsert').fadeIn('fast');
                             $("#saveinsert").html('Save');
+                            $("#progresloader").fadeOut('fast');
+                        },
+                        contentType: false,
+                        processData: false
+                    });
+                    return false;
+                });
+
+                $('#btnpurchase').click(function() {
+                    
+                    //  TRACKING PIXEL
+                    fbq('track', 'Purchase', {content_ids: '<?PHP echo $idproduct; ?>', content_name: '<?PHP echo $data['name']; ?>', content_type: 'product', currency: 'IDR', value: <?PHP echo $valprice; ?> });
+
+                    // console.log();
+                    var dumid   = '<?PHP echo $idproduct; ?>';
+                    $.ajax({
+                        url: "<?PHP echo base_url(); ?>core/getLinkMarketPlace",
+                        type: "POST",
+                        data: 'dumid='+dumid,
+                        beforeSend: function(){ 
+                            $("#progresloader").fadeIn('fast');
+                        },
+                        success: function(data) {
+                            if(data) {
+                                // alert(data);
+                                $("#progresloader").fadeOut('fast');
+                                window.location.href = data;
+                            } else { 
+                                $("#progresloader").fadeOut('fast');
+                            }
+                        },
+                        error: function (error) {
                             $("#progresloader").fadeOut('fast');
                         },
                         contentType: false,

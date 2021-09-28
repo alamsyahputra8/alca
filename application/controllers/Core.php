@@ -8114,4 +8114,14 @@ class Core extends CI_Controller {
 		}
 	}
 
+	public function getLinkMarketPlace(){
+		$id			= trim(strip_tags(stripslashes($this->input->post('dumid',true))));
+		
+		$rows 		= $this->db->query("SELECT * FROM product where id_product='$id'")->result_array();
+
+		foreach ($rows as $data) {
+			echo $data['link_product'];
+		} 
+	}
+
 }
