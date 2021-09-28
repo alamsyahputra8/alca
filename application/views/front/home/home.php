@@ -55,8 +55,8 @@
                             foreach ($getadsC as $adsC) {
                             ?>
                             <a class="" href="<?PHP echo $adsC['link']; ?>" target="_blank">
-                                <div class="shop-promo-box text-right" style="padding: 0px; min-height: 360px;">
-                                    <img src="<?PHP echo base_url(); ?>images/ads/<?PHP echo $adsC['picture']; ?>" style="width: 100%;">
+                                <div class="shop-promo-box text-right" style="padding: 0px; min-height: 390px;">
+                                    <img src="<?PHP echo base_url(); ?>images/ads/<?PHP echo $adsC['picture']; ?>" style="width: 100%; min-height: 375px;">
                                 </div>
                             </a>
                             <?PHP } ?>
