@@ -1,10 +1,88 @@
-<?PHP $logo = array_shift($getSiteData); ?>
+<?PHP
+$logo       = array_shift($getSiteData);
+
+$getLand    = $this->db->query("SELECT * FROM landingpage where id=1")->result_array();
+$dLand      = array_shift($getLand);
+
+$activepage = $this->uri->uri_string();
+?>
 
 <?PHP $this->load->view('theme/polo/plugin1'); ?>
 
         <?PHP $this->load->view('theme/polo/topbar'); ?>
 
         <?PHP $this->load->view('theme/polo/header'); ?>
+
+        <style>
+            .bglandalca {
+                height: 100%;
+                background: #FFF url('<?PHP echo base_url(); ?>images/<?PHP echo $dLand['back_desktop']; ?>') no-repeat center;
+                background-size: auto 100%;
+            }
+            .btnlandingpage {
+                width: 280px;
+                opacity: 1;
+                cursor: pointer;
+            }
+            .btnlandingpage img {
+                width: 280px;
+                margin-bottom: 10px;
+            }
+            .btnlandingpage:hover {
+                opacity: 1;
+            }
+            .mbland {
+                padding: 5rem;
+            }
+            @media (max-width: 481px) {
+                .bglandalca {
+                    height: 100%;
+                    background: #FFF url('<?PHP echo base_url(); ?>images/<?PHP echo $dLand['back_mobile']; ?>') no-repeat center;
+                    background-size: cover;
+                }
+                .mbland {
+                    padding: 5rem 2rem;
+                }
+            }
+        </style>
+
+        <?PHP if (empty($activepage)) { ?>
+        <div class="modal fade" id="modalfirst" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document" style="max-width: 100%!important; margin: 0px; position: fixed; width: 100%; top: 0; bottom: 0; height: 100%; background:#FFF;">
+                <div class="modal-content bglandalca">
+                    <div class="modal-body kt-portlet kt-portlet--tabs mbland" style="margin-bottom: 0px;">
+                        <div class="kt-portlet__head">
+                            <div class="kt-portlet__head-label">
+                                <h3 class="kt-portlet__head-title text-center"></h3>
+                            </div>
+                        </div>
+                        <div class="kt-portlet__body text-center">
+                            <img src="<?PHP echo base_url(); ?>images/alcalogoland.png" style="max-width: 150px;"><br><br><br>
+
+                            <div>
+                                <a href="<?PHP echo $dLand['link_marketplace']; ?>" class="btnlandingpage" target="_blank">
+                                    <img src="<?PHP echo base_url(); ?>images/btnshopee.png">
+                                </a>
+                            </div>
+                            <div>
+                                <a href="<?PHP echo base_url(); ?>home" class="btnlandingpage">
+                                    <img src="<?PHP echo base_url(); ?>images/btnwebsite.png">
+                                </a>
+                            </div>
+                            <div>
+                                <a href="https://api.whatsapp.com/send?phone=<?PHP echo $logo['whatsapp_no']; ?>" class="btnlandingpage" target="_blank">
+                                    <img src="<?PHP echo base_url(); ?>images/btnwa.png">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+        <?PHP } ?>
 
         <!-- Inspiro Slider -->
         <div id="slider" class="inspiro-slider slider-fullscreen arrows-large arrows-creative dots-creative" data-height-xs="360">
@@ -189,6 +267,12 @@
        <?PHP $this->load->view('theme/polo/footer'); ?>
 
        <script>
+            <?PHP if (empty($activepage)) { ?>
+            $(window).on('load', function() {
+                $('#modalfirst').modal('show');
+            });
+            <?PHP } ?>
+
             <?PHP
             $gtotal_data        = $this->query->getDatabyQ("select count(*) total from product");
             $dtotal_data        = array_shift($gtotal_data);

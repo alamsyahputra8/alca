@@ -5364,9 +5364,71 @@ class Core extends CI_Controller {
 			$showreel		= trim(strip_tags(stripslashes($this->input->post('showreel',true))));
 			$whatsapp_no	= trim(strip_tags(stripslashes($this->input->post('whatsapp_no',true))));
 			$whatsapp_text	= trim(strip_tags(stripslashes($this->input->post('whatsapp_text',true))));
+
+			$ceklpdesk		= $_FILES['bgland']['name'];
+			$ceklpmob		= $_FILES['bglandmob']['name'];
+			$linkmkp		= trim(strip_tags(stripslashes($this->input->post('linkmkp',true))));
 			
 			$url 		= "Site Configuration";
 			$activity 	= "UPDATE";
+
+			if ($ceklpdesk!='') {
+				$coba = $this->query->getData('landingpage','back_desktop',"WHERE id='1'");
+				foreach ($coba as $dataex) {
+					$dataexis1 = 'images/'.$dataex['back_desktop'];
+				}
+				unlink($dataexis1);
+			
+				$fileName1 = str_replace(' ','_',time().$_FILES['bgland']['name']);
+				$config['upload_path'] = './images/'; //buat folder dengan nama assets di root folder
+				$config['file_name'] = $fileName1;
+				$config['allowed_types'] = 'gif|jpg|png|jpeg';
+				$config['max_size'] = 10000000;
+				 
+				$this->load->library('upload');
+				$this->upload->initialize($config);
+				 
+				if(! $this->upload->do_upload('bgland') )
+				$this->upload->display_errors();
+					 
+				$media1 = $this->upload->data('bgland');
+
+				$upddesk = "back_desktop='$fileName1',";
+			} else {
+				$upddesk = '';
+			}
+
+			if ($ceklpmob!='') {
+				$coba = $this->query->getData('landingpage','back_mobile',"WHERE id='1'");
+				foreach ($coba as $dataex) {
+					$dataexis2 = 'images/'.$dataex['back_mobile'];
+				}
+				unlink($dataexis2);
+			
+				$fileName2 = str_replace(' ','_',time().$_FILES['bglandmob']['name']);
+				$config['upload_path'] = './images/'; //buat folder dengan nama assets di root folder
+				$config['file_name'] = $fileName2;
+				$config['allowed_types'] = 'gif|jpg|png|jpeg';
+				$config['max_size'] = 10000000;
+				 
+				$this->load->library('upload');
+				$this->upload->initialize($config);
+				 
+				if(! $this->upload->do_upload('bglandmob') )
+				$this->upload->display_errors();
+					 
+				$media1 = $this->upload->data('bglandmob');
+
+				$updmob = "back_mobile='$fileName2',";
+			} else {
+				$updmob = '';
+			}
+
+			$rows 	= $this->query->updateData(
+						'landingpage',
+						"$upddesk $updmob link_marketplace='$linkmkp'",
+						"WHERE id='1'"
+					);
 			
 			if ($cekinglogo!='') {
 				//delete eksisting

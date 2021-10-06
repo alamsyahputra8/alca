@@ -6,6 +6,9 @@ $mail		 = $data['mail_site'];
 $alamat		 = $data['alamat'];
 $phone		 = $data['phone'];
 $maps		 = $data['maps'];
+
+$getLand     = $this->db->query("SELECT * FROM landingpage where id=1")->result_array();
+$dLand       = array_shift($getLand);
 ?>
 <style>
 .mr1rem { margin-left: -1rem; }
@@ -197,6 +200,35 @@ $maps		 = $data['maps'];
 								<div class="col-lg-7 col-md-9 col-sm-12">
 									<div class='input-group'>
 										<input type="text" name="whatsapp_text" class="form-control" id="whatsapp_text" placeholder="Hallo !">
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<label class="col-form-label col-lg-3 col-sm-12">Background Landing Page (Desktop)</label>
+								<div class="col-lg-7 col-md-9 col-sm-12">
+									<div class='input-group'>
+										<input type="file" name="bgland" class="form-control" id="bgland" placeholder="">
+									</div>
+									<span class="form-text text-muted">Kosongkan jika tidak akan merubah Background.</span>
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<label class="col-form-label col-lg-3 col-sm-12">Background Landing Page (Mobile)</label>
+								<div class="col-lg-7 col-md-9 col-sm-12">
+									<div class='input-group'>
+										<input type="file" name="bglandmob" class="form-control" id="bglandmob" placeholder="">
+									</div>
+									<span class="form-text text-muted">Kosongkan jika tidak akan merubah Background.</span>
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<label class="col-form-label col-lg-3 col-sm-12">Link Marketplace</label>
+								<div class="col-lg-7 col-md-9 col-sm-12">
+									<div class='input-group'>
+										<input type="text" name="linkmkp" class="form-control" id="linkmkp" placeholder="Link Marketplace" value="<?PHP echo $dLand['link_marketplace']; ?>">
 									</div>
 								</div>
 							</div>

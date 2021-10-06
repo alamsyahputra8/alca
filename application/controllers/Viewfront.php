@@ -96,6 +96,13 @@ class Viewfront extends CI_Controller {
 		
 		$this->load->view('/front/home/home',$data);
 	}
+
+	public function home(){
+		$data['getSiteData'] 	= $this->query->getData('configsite','*',"");
+		//$data['getRoomCat'] 	= $this->query->getData('category_room','*',"order by id_cat ASC");
+		
+		$this->load->view('/front/home/home',$data);
+	}
 	
 	public function about(){
 		$data['getSiteData'] 	= $this->query->getData('configsite','*',"");

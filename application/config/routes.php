@@ -86,6 +86,7 @@ $route['panel/log'] 			= 'viewpanel/log';
 $route['panel/logout'] 			= 'viewpanel/logout';
 
 // ROUTE FRONT END
+$route['home'] 					= 'viewfront/home';
 $route['page/(:any)'] 			= 'viewfront/page/$1';
 $route['blog/(:any)'] 			= 'viewfront/blog/$1';
 $route['shop/(:any)/(:any)'] 	= 'viewfront/shop/$1/$2';
