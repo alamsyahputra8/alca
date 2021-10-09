@@ -60,7 +60,7 @@ $activepage = $this->uri->uri_string();
                             <img src="<?PHP echo base_url(); ?>images/alcalogoland.png" style="max-width: 150px;"><br><br><br>
 
                             <div>
-                                <a href="<?PHP echo $dLand['link_marketplace']; ?>" class="btnlandingpage" target="_blank">
+                                <a href="#" class="btnlandingpage" id="spmall">
                                     <img src="<?PHP echo base_url(); ?>images/btnshopee.png">
                                 </a>
                             </div>
@@ -70,7 +70,7 @@ $activepage = $this->uri->uri_string();
                                 </a>
                             </div>
                             <div>
-                                <a href="https://api.whatsapp.com/send?phone=<?PHP echo $logo['whatsapp_no']; ?>" class="btnlandingpage" target="_blank">
+                                <a href="#" class="btnlandingpage" id="btnwa">
                                     <img src="<?PHP echo base_url(); ?>images/btnwa.png">
                                 </a>
                             </div>
@@ -272,6 +272,30 @@ $activepage = $this->uri->uri_string();
                 $('#modalfirst').modal('show');
             });
             <?PHP } ?>
+
+            $('#spmall').click(function() {
+                $("#progresloader").fadeIn('fast');
+
+                //  TRACKING PIXEL
+                fbq('track', 'Purchase', {content_ids: '0', content_name: 'Click Shopee Mall', content_type: 'product', currency: 'IDR', value: 0 });
+
+                setTimeout(function() { 
+                    $("#progresloader").fadeOut('fast');
+                    window.location.href = "<?PHP echo $dLand['link_marketplace']; ?>";
+                }, 300);
+            });
+
+            $('#btnwa').click(function() {
+                $("#progresloader").fadeIn('fast');
+
+                //  TRACKING PIXEL
+                fbq('track', 'Purchase', {content_ids: '0', content_name: 'Click Whatsapp', content_type: 'product', currency: 'IDR', value: 0 });
+
+                setTimeout(function() { 
+                    $("#progresloader").fadeOut('fast');
+                    window.location.href = "https://api.whatsapp.com/send?phone=<?PHP echo $logo['whatsapp_no']; ?>";
+                }, 300);
+            });
 
             <?PHP
             $gtotal_data        = $this->query->getDatabyQ("select count(*) total from product");
