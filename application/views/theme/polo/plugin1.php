@@ -20,6 +20,8 @@ if ($dataSEO['id_menu']==1) {
 <html lang="en">
 
 <head>
+    <meta name="facebook-domain-verification" content="amblu3m6vam2kbe8b12qx0ygacmzo5" />
+    
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     
